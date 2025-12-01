@@ -1,284 +1,461 @@
-
-        * {
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.85) 100%);
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .bg-gradient-accent {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-        }
-
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        .animate-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .animate-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .animate-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        .animate-delay-800 {
-            animation-delay: 0.8s;
-        }
-
-        .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element-2 {
-            animation: float 7s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-
-        .floating-element-3 {
-            animation: float 5s ease-in-out infinite;
-            animation-delay: 2s;
-        }
-
-        .stats-gradient {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-        }
-
-        /* القائمة الجانبية - إصلاحات */
-        .sidebar {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-            height: 100vh;
-            overflow-y: auto;
-            width: 320px;
-        }
-
-        .sidebar.open {
-            transform: translateX(0);
-        }
-
-        .sidebar-content {
-            max-height: calc(100vh - 2rem);
-            overflow-y: auto;
-            padding-bottom: 2rem;
-        }
-
-        /* تخصيص شريط التمرير للقائمة الجانبية */
-        .sidebar-content::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-content::-webkit-scrollbar-track {
-            background: #1e293b;
-            border-radius: 10px;
-        }
-
-        .sidebar-content::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 10px;
-        }
-
-        .sidebar-content::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
-
-        .overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-
-        .overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* تأثيرات جديدة */
-        .shimmer-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .ripple-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ripple-effect::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-
-        .ripple-effect:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-
-        /* تحسينات للجوال */
-        @media (max-width: 768px) {
-            .hero-bg {
-                background-attachment: scroll;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-            }
-
-            .service-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* تحسينات للقائمة الجانبية على الجوال */
-            .sidebar {
-                width: 85%;
-                max-width: 320px;
-            }
-
-            .sidebar-content {
-                max-height: calc(100vh - 1rem);
-            }
-
-            /* إصلاحات للصورة في قسم خبراتي */
-            .about-image-container {
-                height: 300px !important;
-                min-height: 300px;
-            }
-
-            .about-image {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                display: block;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-btns {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .hero-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                width: 90%;
-            }
-
-            /* إصلاحات إضافية للصورة على الشاشات الصغيرة */
-            .about-image-container {
-                height: 250px !important;
-                min-height: 250px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .sidebar {
-                width: 380px;
-            }
-
-            /* إصلاحات للصورة على الشاشات الكبيرة */
-            .about-image-container {
-                height: 450px;
-                min-height: 450px;
-            }
-
-            .about-image {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                display: block;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .ripple-effect::after {
-                animation: none !important;
-                display: none !important;
-            }
-        }
-
-/* إصلاح نهائي لمشكلة تكبير الأزرار */
-.hero-btn {
-    transform-origin: center !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    -webkit-tap-highlight-color: transparent !important;
-    touch-action: manipulation !important;
+/* fonts.css - مخصص للخطوط فقط */
+@font-face {
+    font-family: 'Tajawal';
+    src: url('tajawal-regular.woff2') format('woff2'),
+         url('tajawal-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-.hero-btn:hover {
-    transform: translateY(-2px) !important;
+/* main.css - الأنماط الأساسية */
+* {
+    font-family: 'Tajawal', sans-serif;
+    box-sizing: border-box;
+}
+
+/* أساسيات الألوان */
+:root {
+    --color-dark-bg: #0f172a;
+    --color-dark-card: #1e293b;
+    --color-dark-border: #334155;
+    --color-accent-blue: #3b82f6;
+    --color-accent-purple: #8b5cf6;
+    --color-accent-teal: #0d9488;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-green-600: #059669;
+    --color-white: #ffffff;
+}
+
+body {
+    background-color: var(--color-dark-bg);
+    color: var(--color-white);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* خلفية الهيدر */
+.hero-gradient {
+    background: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.95) 0%, 
+        rgba(30, 41, 59, 0.85) 100%);
+}
+
+/* تأثير التدرج اللوني للنصوص */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* الخلفيات المتدرجة */
+.bg-gradient-accent {
+    background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+}
+
+.stats-gradient {
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.1), 
+        rgba(139, 92, 246, 0.1));
+}
+
+/* تأثير الوميض للنصوص */
+.shimmer-text {
+    background: linear-gradient(90deg, 
+        var(--color-accent-blue), 
+        var(--color-accent-purple), 
+        var(--color-accent-blue));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* تأثيرات الحركة الأساسية */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes bounceGentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تطبيق الحركات */
+.floating-element {
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-element-2 {
+    animation: float 7s ease-in-out infinite 1s;
+}
+
+.floating-element-3 {
+    animation: float 5s ease-in-out infinite 2s;
+}
+
+.animate-bounce-gentle {
+    animation: bounceGentle 2s infinite;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+/* التأخيرات الزمنية */
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-800 { animation-delay: 0.8s; }
+
+/* البطاقات والتفاعل */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* القائمة الجانبية للجوال */
+.sidebar {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    height: 100vh;
+    overflow-y: auto;
+    width: 320px;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-content {
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding-bottom: 2rem;
+}
+
+/* شريط التمرير المخصص */
+.sidebar-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: var(--color-dark-card);
+    border-radius: 10px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: var(--color-accent-blue);
+    border-radius: 10px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* الطبقة الشفافة */
+.overlay {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* خلفية الهيدر الرئيسية */
+.hero-bg {
+    background-image: 
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)),
+        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* الأزرار الرئيسية - محسنة للجوال */
+.hero-btn {
+    transform-origin: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
 
 .hero-btn:active {
-    transform: scale(0.98) !important;
+    transform: scale(0.98);
 }
 
-/* إزالة جميع تأثيرات GSAP من الأزرار */
-.hero-btn {
-    animation: none !important;
+/* شبكة الإحصائيات */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 64rem;
+    margin: 0 auto;
 }
 
-/* منع التكبير المفرط على الجوال */
-@media (max-width: 768px) {
-    .hero-btn {
-        transform: none !important;
-        transition: opacity 0.2s ease !important;
+/* البطاقات */
+.service-card {
+    padding: 1.5rem;
+    background-color: var(--color-dark-card);
+    border: 1px solid var(--color-dark-border);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* صور قسم "خبراتي" */
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    display: block;
+}
+
+.about-image-container {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+/* شبكة التواصل */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+/* تنسيق النصوص */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+
+/* الروابط */
+a {
+    color: var(--color-accent-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent-purple);
+}
+
+/* تحسينات إمكانية الوصول */
+:focus {
+    outline: 2px solid var(--color-accent-blue);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-accent-blue);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* إخفاء العناصر للشاشات القارئة */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ========== وسائط الاستعلام ========== */
+
+/* شاشات متوسطة (أجهزة لوحية) */
+@media (min-width: 768px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.25rem; }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
     }
     
-    .hero-btn:active {
-        transform: scale(0.95) !important;
-        opacity: 0.9;
+    .service-card {
+        padding: 2rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .hero-bg {
+        background-image: 
+            linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)),
+            url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80');
+    }
+    
+    .about-image-container {
+        height: 450px;
+        min-height: 450px;
+    }
+    
+    .sidebar {
+        width: 380px;
     }
 }
 
-/* تعطيل تأثير ripple على الجوال */
+/* شاشات كبيرة (حواسيب مكتبية) */
+@media (min-width: 1024px) {
+    h1 { font-size: 4rem; }
+    
+    .hero-bg {
+        background-attachment: fixed;
+    }
+}
+
+/* شاشات صغيرة جدا (هواتف صغيرة) */
+@media (max-width: 480px) {
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-btn {
+        width: 100%;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        width: 90%;
+    }
+    
+    .about-image-container {
+        height: 250px;
+        min-height: 250px;
+    }
+}
+
+/* شاشات متوسطة وصغيرة */
 @media (max-width: 768px) {
+    .hero-bg {
+        background-attachment: scroll;
+    }
+    
+    .sidebar-content {
+        max-height: calc(100vh - 1rem);
+    }
+    
+    .about-image-container {
+        height: 300px;
+        min-height: 300px;
+    }
+    
+    /* تحسينات الجوال - إزالة التأثيرات الثقيلة */
     .ripple-effect::after {
         display: none !important;
     }
+    
+    .floating-element,
+    .floating-element-2,
+    .floating-element-3 {
+        display: none;
+    }
+    
+    .hero-btn:hover {
+        transform: none;
+    }
+    
+    .card-hover:hover {
+        transform: none;
+        box-shadow: none;
+    }
 }
-   
+
+/* الطباعة */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .hero-btn,
+    .sidebar,
+    .overlay {
+        display: none;
+    }
+    
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+    
+    .text-gradient,
+    .shimmer-text {
+        background: none;
+        -webkit-text-fill-color: black;
+        color: black;
+    }
+}
