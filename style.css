@@ -459,3 +459,93 @@ a:hover {
         color: black;
     }
 }
+/* ============================================
+   إصلاح كامل لمشكلة التكبير على جميع الأجهزة
+   ============================================ */
+
+/* إزالة تأثيرات التكبير الافتراضية */
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* منع تكبير العناصر التفاعلية */
+button, 
+a, 
+input, 
+textarea,
+[role="button"] {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+/* فئة خاصة لمنع التكبير */
+.no-zoom {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+
+/* إصلاح الأزرار الرئيسية */
+.hero-btn {
+    touch-action: manipulation;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transform-origin: center;
+}
+
+/* تأثيرات آمنة للنقر */
+a:active, 
+button:active,
+.hero-btn:active,
+.ripple-effect:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.15s ease !important;
+}
+
+/* إصلاح خاص للروابط الهاتفية */
+a[href^="tel:"] {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+a[href^="tel:"]:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: safe-pulse 0.3s ease-out;
+}
+
+@keyframes safe-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* إصلاح القائمة الجانبية */
+.sidebar-link:active {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+    transform: translateX(-4px) !important;
+}
+
+/* إصلاح أزرار الفلاتر */
+.filter-btn:active {
+    transform: scale(0.95) !important;
+}
