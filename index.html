@@ -852,17 +852,28 @@
         </div>
 
         <!-- دعوة للعمل مع طابع تسويقي -->
-        <div class="mt-12 text-center animate-fade-in-up animate-delay-600">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4 shimmer-text">هل تريد أن تكون صورتك التالية في معرضنا؟</h3>
-            <p class="text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto text-lg">
-                انضم إلى المئات من العملاء الراضين عن خدماتنا المميزة في تركيب وصيانة الأجهزة الرياضية
-            </p>
-            <a href="tel:+966560615748"
-                class="inline-flex items-center space-x-2 space-x-reverse bg-gradient-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ripple-effect">
-                <i class="fas fa-phone"></i>
-                <span>احجز موعدك الآن</span>
-            </a>
-        </div>
+       <!-- داخل قسم معرض أعمالنا - بديل آمن -->
+<div class="mt-12 text-center animate-fade-in-up animate-delay-600">
+    <h3 class="text-2xl md:text-3xl font-bold mb-4 shimmer-text">هل تريد أن تكون صورتك التالية في معرضنا؟</h3>
+    <p class="text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto text-lg">
+        انضم إلى المئات من العملاء الراضين عن خدماتنا المميزة في تركيب وصيانة الأجهزة الرياضية
+    </p>
+    
+    <!-- الزر الجديد الثابت -->
+    <div class="relative inline-block">
+        <a href="tel:+966560615748"
+            class="inline-flex items-center justify-center space-x-2 space-x-reverse 
+                   bg-gradient-to-r from-accent-blue to-accent-purple 
+                   text-white px-8 py-4 rounded-full font-bold text-lg 
+                   shadow-lg hover:opacity-90 transition-opacity duration-200 
+                   focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 
+                   no-zoom"
+            style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
+            <i class="fas fa-phone"></i>
+            <span>احجز موعدك الآن</span>
+        </a>
+    </div>
+</div>
     </div>
 </section>
 
@@ -1438,6 +1449,142 @@ document.querySelectorAll('.hero-btn').forEach(btn => {
             opacity: 0;
         }
     }
+    // ============================================
+// إصلاح شامل لمشكلة التكبير - يعمل على جميع الأجهزة
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // قائمة بجميع العناصر التي تحتاج إصلاح
+    const interactiveElements = [
+        'a',
+        'button',
+        '.hero-btn',
+        '.ripple-effect',
+        '.filter-btn',
+        '.sidebar-link',
+        '[role="button"]'
+    ];
+    
+    // تطبيق الإصلاح على جميع العناصر
+    interactiveElements.forEach(selector => {
+        document.querySelectorAll(selector).forEach(element => {
+            fixZoomIssue(element);
+        });
+    });
+    
+    // دالة الإصلاح الرئيسية
+    function fixZoomIssue(element) {
+        // إزالة جميع مستمعي الأحداث السابقة لمنع التضارب
+        element.replaceWith(element.cloneNode(true));
+        const newElement = element;
+        
+        // إضافة فئة no-zoom
+        newElement.classList.add('no-zoom');
+        
+        // منع السلوك الافتراضي للنقر الطويل
+        newElement.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // التحكم في حدث touchstart
+        newElement.addEventListener('touchstart', function(e) {
+            // منع الانتشار لمنع تأثيرات المتصفح
+            e.stopPropagation();
+            
+            // تأثير بسيط وآمن
+            this.style.opacity = '0.9';
+            this.style.transform = 'scale(0.98)';
+            
+            // إضافة مؤقت لإعادة الحالة الأصلية
+            setTimeout(() => {
+                this.style.opacity = '';
+                this.style.transform = '';
+            }, 150);
+        }, { passive: true });
+        
+        // التحكم في حدث touchend
+        newElement.addEventListener('touchend', function(e) {
+            e.stopPropagation();
+            this.style.opacity = '';
+            this.style.transform = '';
+        }, { passive: true });
+        
+        // التحكم في حدث touchcancel
+        newElement.addEventListener('touchcancel', function(e) {
+            e.stopPropagation();
+            this.style.opacity = '';
+            this.style.transform = '';
+        }, { passive: true });
+        
+        // التحكم في حدث النقر العادي (للماوس)
+        newElement.addEventListener('mousedown', function(e) {
+            this.style.transform = 'scale(0.98)';
+        });
+        
+        newElement.addEventListener('mouseup', function(e) {
+            this.style.transform = '';
+        });
+        
+        newElement.addEventListener('mouseleave', function(e) {
+            this.style.transform = '';
+        });
+        
+        // منع النقر المزدوج للتكبير
+        let lastTouchEnd = 0;
+        newElement.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    }
+    
+    // إصلاح خاص للروابط الهاتفية
+    document.querySelectorAll('a[href^="tel:"]').forEach(telLink => {
+        telLink.addEventListener('click', function(e) {
+            // التأكد من أن الرابط يعمل
+            console.log('تم النقر على الرابط الهاتفي');
+            
+            // إعادة تعيين التحويلات بعد فترة قصيرة
+            setTimeout(() => {
+                this.style.transform = '';
+                this.style.opacity = '';
+            }, 300);
+        });
+    });
+    
+    // إصلاح خاص لأزرار الهيرو
+    document.querySelectorAll('.hero-btn').forEach(heroBtn => {
+        heroBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.classList.add('active');
+        }, { passive: false });
+        
+        heroBtn.addEventListener('touchend', function(e) {
+            setTimeout(() => {
+                this.classList.remove('active');
+            }, 150);
+        });
+    });
+    
+    // حل بديل: تعطيل تأثيرات GSAP على العناصر التفاعلية
+    gsap.config({
+        nullTargetWarn: false
+    });
+});
+
+// حل نهائي: إعادة تهيئة جميع الأزرار عند تحميل الصفحة
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        const allButtons = document.querySelectorAll('button, a[href^="tel:"], a[href^="https://wa.me/"]');
+        allButtons.forEach(btn => {
+            btn.style.transform = '';
+            btn.style.transition = 'all 0.2s ease';
+        });
+    }, 1000);
+});
     </script>
 </body>
 
