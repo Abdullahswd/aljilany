@@ -240,9 +240,9 @@
 <header
     class="fixed w-full z-50 bg-dark-bg/90 backdrop-blur-md border-b border-dark-border transition-all duration-300">
     <div class="container mx-auto px-4 py-3">
-        
-        <!-- شبكه 3 اعمده لضبط التوسيط -->
-        <div class="grid grid-cols-3 items-center">
+
+        <!-- الموبايل: فلكس / الديسكتوب: غريد -->
+        <div class="flex justify-between items-center md:grid md:grid-cols-3 md:items-center">
 
             <!-- الشعار -->
             <div class="flex items-center space-x-2 space-x-reverse">
@@ -253,32 +253,31 @@
                 <span class="text-xl font-bold shimmer-text">محمد الجيلاني</span>
             </div>
 
-            <!-- القائمة في الوسط (شاشات كبيره فقط) -->
+            <!-- القائمة (مخفية في الموبايل – مركزية في الديسكتوب) -->
             <nav class="hidden md:flex justify-center space-x-8 space-x-reverse">
-                <a href="#home" class="font-medium hover:text-accent-blue transition-colors duration-300 relative
-                    after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent
-                    after:bottom-0 after:right-0 hover:after:w-full after:transition-all after:duration-300">
-                    الرئيسية
-                </a>
-                <a href="#services" class="font-medium hover:text-accent-blue transition-colors duration-300 relative
-                    after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent
-                    after:bottom-0 after:right-0 hover:after:w-full after:transition-all after:duration-300">
-                    الخدمات
-                </a>
-                <a href="#about" class="font-medium hover:text-accent-blue transition-colors duration-300 relative
-                    after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent
-                    after:bottom-0 after:right-0 hover:after:w-full after:transition-all after:duration-300">
-                    خبراتي
-                </a>
-                <a href="#contact" class="font-medium hover:text-accent-blue transition-colors duration-300 relative
-                    after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent
-                    after:bottom-0 after:right-0 hover:after:w-full after:transition-all after:duration-300">
-                    اتصل بنا
-                </a>
+                <a href="#home"
+                    class="font-medium hover:text-accent-blue transition-colors duration-300 relative after:content-['']
+                    after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent after:bottom-0 after:right-0
+                    hover:after:w-full after:transition-all after:duration-300">الرئيسية</a>
+
+                <a href="#services"
+                    class="font-medium hover:text-accent-blue transition-colors duration-300 relative after:content-['']
+                    after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent after:bottom-0 after:right-0
+                    hover:after:w-full after:transition-all after:duration-300">الخدمات</a>
+
+                <a href="#about"
+                    class="font-medium hover:text-accent-blue transition-colors duration-300 relative after:content-['']
+                    after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent after:bottom-0 after:right-0
+                    hover:after:w-full after:transition-all after:duration-300">خبراتي</a>
+
+                <a href="#contact"
+                    class="font-medium hover:text-accent-blue transition-colors duration-300 relative after:content-['']
+                    after:absolute after:w-0 after:h-0.5 after:bg-gradient-accent after:bottom-0 after:right-0
+                    hover:after:w-full after:transition-all after:duration-300">اتصل بنا</a>
             </nav>
 
-            <!-- زر القائمة للجوال (في الطرف يمين دائماً) -->
-            <div class="flex justify-end md:hidden">
+            <!-- زر القائمة للجوال – دائماً في أقصى اليمين على الموبايل -->
+            <div class="md:hidden flex justify-end">
                 <button id="menu-toggle"
                     class="bg-dark-card w-12 h-12 rounded-lg flex items-center justify-center border border-dark-border ripple-effect">
                     <i class="fas fa-bars text-xl"></i>
@@ -286,8 +285,10 @@
             </div>
 
         </div>
+
     </div>
 </header>
+
 
 
     <!-- القائمة الجانبية للجوال -->
