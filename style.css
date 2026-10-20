@@ -107,7 +107,7 @@ body {
     }
 }
 
-/* تطبيق الحركات */
+/* تطبيق الحركات الأساسية (حركات التمرير يتم التحكم بها بسلاسة بواسطة GSAP لمنع التضارب والوميض) */
 .floating-element {
     animation: float 6s ease-in-out infinite;
 }
@@ -124,19 +124,13 @@ body {
     animation: bounceGentle 2s infinite;
 }
 
-.animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
+/* فئات التحريك - تدار عبر GSAP ScrollTrigger بدون تضارب مع CSS */
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-slide-in-right {
+    will-change: transform, opacity;
 }
 
-.animate-fade-in-down {
-    animation: fadeInDown 0.8s ease-out forwards;
-}
-
-/* التأخيرات الزمنية */
-.animate-delay-200 { animation-delay: 0.2s; }
-.animate-delay-400 { animation-delay: 0.4s; }
-.animate-delay-600 { animation-delay: 0.6s; }
-.animate-delay-800 { animation-delay: 0.8s; }
 
 /* البطاقات والتفاعل */
 .card-hover {
@@ -281,12 +275,16 @@ h3 { font-size: 1.5rem; }
 
 /* الروابط */
 a {
-    color: var(--color-accent-blue);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
-a:hover {
+/* تطبيق اللون فقط على الروابط النصية البسيطة واستثناء الأزرار والبطاقات */
+a:not([class*="bg-"]):not([class*="hero-btn"]):not([class*="rounded"]):not([class*="btn"]) {
+    color: var(--color-accent-blue);
+}
+
+a:not([class*="bg-"]):not([class*="hero-btn"]):not([class*="rounded"]):not([class*="btn"]):hover {
     color: var(--color-accent-purple);
 }
 
@@ -458,4 +456,36 @@ a:hover {
         -webkit-text-fill-color: black;
         color: black;
     }
+}
+
+/* أنماط معرض الأعمال والتفاعل */
+.portfolio-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-8px);
+}
+
+.portfolio-item .ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item .ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.portfolio-item .ripple-effect:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
 }
