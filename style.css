@@ -506,18 +506,22 @@ a:not([class*="bg-"]):not([class*="hero-btn"]):not([class*="rounded"]):not([clas
     min-height: 40px !important;
     max-width: 40px !important;
     max-height: 40px !important;
-    border-radius: 9999px;
-    overflow: hidden;
+    border-radius: 9999px !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
 }
 
-.nav-logo-img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+.nav-logo-img,
+header img[src*="m-logo.webp"] {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
     object-fit: cover !important;
-    border-radius: 9999px;
-    display: block;
+    border-radius: 9999px !important;
+    display: block !important;
 }
 
 header nav {
